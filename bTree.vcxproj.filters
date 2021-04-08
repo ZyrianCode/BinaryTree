@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include=".editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Zyrian\BinaryTree\bTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Zyrian\BinaryTree\Definition\BinaryTreeNode.h" />
+    <ClInclude Include="Src\Zyrian\BinaryTree\Definition\BinaryTree.h" />
+    <ClInclude Include="Src\Zyrian\BinaryTree\Implementation\BinaryTree.hpp" />
+  </ItemGroup>
+</Project>
