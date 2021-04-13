@@ -16,7 +16,7 @@ void BinaryTree<T>::Insert(T value)
 }
 
 template<class T> //public 
-void BinaryTree<T>::Insert(T&& value) //for unique values
+void BinaryTree<T>::Add(T&& value) //for unique values
 {
     BinaryTreeNode<T>* Ptr;
     if (TreeRoot == nullptr) {
@@ -130,7 +130,7 @@ T BinaryTree<T>::PopMax(void) noexcept
 template<class T> //public
 BinaryTreeNode<T>* BinaryTree<T>::Search(T value)
 {
-    return Search(value, TreeRoot);
+    return (BinaryTreeNode<T>*)Search(value, TreeRoot);
 }
 
 template<class T> //public
@@ -144,24 +144,24 @@ bool BinaryTree<T>::IsEmpty(void) const noexcept
 template<class T>  //private
 void BinaryTree<T>::Insert(T value, BinaryTreeNode<T>* Branch)
 {
-    if (value < Branch->value) {
+    if (value < Branch->val) {
         if (Branch->Left != nullptr) {
             Insert(value, Branch->Left);
         }
         else {
             Branch->Left = new BinaryTreeNode<T>();
-            Branch->Left->value = value;
+            Branch->Left->val = value;
             Branch->Left->Left = nullptr;
             Branch->Left->Right = nullptr;
         }
     }
-    else if (value >= Branch->value) {
+    else if (value >= Branch->val) {
         if (Branch->Right != nullptr) {
             Insert(value, Branch->Right);
         }
         else {
             Branch->Right = new BinaryTreeNode<T>();
-            Branch->Right->value = value;
+            Branch->Right->val = value;
             Branch->Right->Right = nullptr;
             Branch->Right->Left = nullptr;
         }
@@ -225,16 +225,15 @@ void BinaryTree<T>::Inorder_print(BinaryTreeNode<T>* Branch)
 {
     if (Branch != nullptr) {
         PosCounter += 8;
-        Inorder_print(Branch->Left);
+        Inorder_print(Branch->Right); //left
      
         for (int i = 0; i < PosCounter; i++)
         {
             cout << " ";
         }
-        cout << Branch->val;
-        cout << endl;
+        cout << Branch->val << endl;
 
-        Inorder_print(Branch->Right);
+        Inorder_print(Branch->Left); //right
         PosCounter -= 8;
     }
 }
@@ -243,8 +242,10 @@ template<class T> //private
 void BinaryTree<T>::Postorder_print(BinaryTreeNode<T>* Branch)
 {
     if (Branch != nullptr) {
-        Inorder_print(Branch->Left);
-        Inorder_print(Branch->Right);
+        Inorder_print(Branch->Right); //left
+        Inorder_print(Branch->Left); //right
+        PosCounter += 8;
+       
         cout << Branch->val << ",";
     }
 }

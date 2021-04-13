@@ -24,7 +24,7 @@ public:
     BinaryTree& operator = (const BinaryTree&) = delete;
 
     void Insert(T value);
-    void Insert(T&& value);
+    void Add(T&& value);
     void InsertUnique(const T& value);
 
     void DestroyTree();
